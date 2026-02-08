@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>For Samriddhi 💕 Will You Be My Valentine?</title>
+<style>
+/* Reset and Base Styles */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+-webkit-tap-highlight-color: transparent;
+-webkit-user-select: none;
+user-select: none;
+}
+
+html, body {
+width: 100%;
+height: 100%;
+overflow: hidden;
+touch-action: manipulation;
+}
+
+body {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+background: linear-gradient(135deg, #ff6b9d 0%, #ff8e53 100%);
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+/* Main Container */
+.container {
+width: 200%;
+max-width: 500px;
+height: 100vh;
+background: white;
+border-radius: 30px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+overflow: hidden;
+position: relative;
+display: flex;
+flex-direction: column;
+}
+
+/* Header */
+.header {
+padding: 40px 20px 20px;
+text-align: center;
+}
+
+h1 {
+color: #ff3366;
+font-size: 2.2rem;
+font-weight: 800;
+line-height: 1.2;
+margin-bottom: 10px;
+}
+
+.subtitle {
+color: #666;
+font-size: 1rem;
+}
+
+/* Character Area */
+.character-area {
+flex: 1;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+.character-container {
+width: 250px;
+height: 250px;
+position: relative;
+}
+
+.character {
+width: 100%;
+height: 100%;
+object-fit: contain;
+animation: bounce 1.5s infinite alternate ease-in-out;
+}
+
+.rose {
+position: absolute;
+bottom: 50px;
+right: 30px;
+font-size: 3.5rem;
+animation: sway 2s infinite alternate ease-in-out;
+transform-origin: bottom center;
+}
+
+@keyframes bounce {
+0% { transform: translateY(0); }
+100% { transform: translateY(-20px); }
+}
+
+@keyframes sway {
+0% { transform: rotate(-20deg); }
+100% { transform: rotate(20deg); }
+}
+
+/* Buttons - FIXED FOR iOS */
+.buttons-area {
+padding: 20px;
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.button-row {
+display: flex;
+gap: 15px;
+justify-content: center;
+}
+
+/* iOS-Friendly Button Styles */
+.ios-button {
+flex: 1;
+min-height: 80px;
+border: none;
+border-radius: 20px;
+font-size: 1.6rem;
+font-weight: bold;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+cursor: pointer;
+transition: all 0.2s;
+-webkit-appearance: none;
+appearance: none;
+padding: 0;
+position: relative;
+overflow: hidden;
+max-width: 180px;
+}
+
+/* Active state for iOS */
+.ios-button:active {
+transform: scale(0.95);
+}
+
+/* Remove default iOS styles */
+.ios-button,
+.ios-button:focus,
+.ios-button:active {
+-webkit-tap-highlight-color: transparent;
+outline: none;
+-webkit-user-select: none;
+user-select: none;
+}
+
+#yes-btn {
+background: linear-gradient(135deg, #34C759, #30D158);
+color: white;
+text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+#no-btn {
+background: linear-gradient(135deg, #FF3B30, #FF453A);
+color: white;
+text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Message Area */
+.message-area {
+min-height: 60px;
+padding: 0 20px 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#message {
+background: rgba(255, 240, 245, 0.9);
+padding: 15px 25px;
+border-radius: 15px;
+border-left: 5px solid #ff3366;
+color: #ff3366;
+font-size: 1.1rem;
+text-align: center;
+display: none;
+max-width: 90%;
+}
+
+/* Celebration Screen */
+.celebration {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+display: none;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 30px;
+text-align: center;
+z-index: 100;
+}
+
+.couple-images {
+display: flex;
+gap: 20px;
+margin: 30px 0;
+}
+
+.couple-images img {
+width: 140px;
+height: 140px;
+object-fit: contain;
+animation: float 2s infinite alternate ease-in-out;
+}
+
+.couple-images img:nth-child(2) {
+animation-delay: 1s;
+}
+
+@keyframes float {
+0% { transform: translateY(0); }
+100% { transform: translateY(-20px); }
+}
+
+.celebration h2 {
+color: #ff3366;
+font-size: 2.2rem;
+margin-bottom: 20px;
+}
+
+.celebration p {
+color: white;
+font-size: 1.3rem;
+margin: 10px 0;
+text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Hearts */
+.hearts {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 1;
+}
+
+.heart {
+position: absolute;
+color: #ff3366;
+font-size: 24px;
+opacity: 0;
+animation: floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+0% {
+transform: translateY(100vh) rotate(0deg);
+opacity: 1;
+}
+100% {
+transform: translateY(-100px) rotate(360deg);
+opacity: 0;
+}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>Hey Samriddhi 💖<br>sorry my illogical message?</h1><br>
+<h1>Please Forgive me.Will you? please give answer</h1>
+<div class="subtitle">Tap your answer below 👇</div>
+</div>
+
+<div class="character-area">
+<div class="character-container">
+<img class="character" src="https://i.imgur.com/uMMGW16.jpeg" alt="Dudu with Rose">
+<div class="rose">🌹</div>
+</div>
+</div>
+
+<div class="buttons-area">
+<div class="button-row">
+<button class="ios-button" id="yes-btn">YES 💕</button>
+<button class="ios-button" id="no-btn">NO 😢</button>
+</div>
+</div>
+
+<div class="message-area">
+<div id="message"></div>
+</div>
+
+<div class="celebration" id="celebration">
+<div class="couple-images">
+<img src="https://i.imgur.com/uMMGW16.jpeg" alt="Dudu">
+<img src="https://i.imgur.com/MTzEqbP.gif" alt="Bubu">
+</div>
+<h2>Yay! You said YES! 🎉</h2>
+<p>❤️ I knew you would say yes!</p>
+<p>❤️ Thankss 💖</p>
+<p>❤️ once again I apologize 💑</p>
+</div>
+
+<div class="hearts" id="hearts"></div>
+</div>
+
+<script>
+// ========== iOS TOUCH FIXES ==========
+// Prevent default touch behaviors
+document.addEventListener('touchstart', function(e) {
+if (e.target.classList.contains('ios-button')) {
+e.preventDefault();
+}
+}, { passive: false });
+
+document.addEventListener('touchmove', function(e) {
+if (e.target.classList.contains('ios-button')) {
+e.preventDefault();
+}
+}, { passive: false });
+
+document.addEventListener('touchend', function(e) {
+if (e.target.classList.contains('ios-button')) {
+e.preventDefault();
+}
+}, { passive: false });
+
+// ========== VARIABLES ==========
+const noButtonTexts = [
+"NO 😢",
+"Are you Sure? 🤔",
+"Really Sure? 😟",
+"Last Chance ⏳",
+"Are you absolutely Sure? 😔",
+"No Love Then? 💔",
+"Whatttt!! Are you serious? 😳",
+"Have a heart 😭",
+"You're breaking my heart 💔😢",
+"Ok, I'm left with no option then 😞"
+];
+
+const sadMessages = [
+"Aww, don't say no...",
+"My heart is sinking...",
+"Please reconsider?",
+"I'll be so sad without you",
+"Think of all our happy moments",
+"You're my everything...",
+"I can't imagine Valentine's without you",
+"This is breaking my heart",
+"Okay... if you're sure...",
+"Last chance to change your mind!"
+];
+
+let noClickCount = 0;
+let yesScale = 1;
+let noScale = 1;
+
+// ========== ELEMENT REFERENCES ==========
+const yesBtn = document.getElementById('yes-btn');
+const noBtn = document.getElementById('no-btn');
+const message = document.getElementById('message');
+const celebration = document.getElementById('celebration');
+const heartsContainer = document.getElementById('hearts');
+
+// ========== TOUCH EVENT HANDLERS ==========
+// Yes Button - Touch events
+yesBtn.addEventListener('touchstart', function(e) {
+e.preventDefault();
+this.style.transform = 'scale(0.95)';
+}, { passive: false });
+
+yesBtn.addEventListener('touchend', function(e) {
+e.preventDefault();
+this.style.transform = '';
+handleYes();
+}, { passive: false });
+
+// No Button - Touch events
+noBtn.addEventListener('touchstart', function(e) {
+e.preventDefault();
+this.style.transform = 'scale(0.95)';
+}, { passive: false });
+
+noBtn.addEventListener('touchend', function(e) {
+e.preventDefault();
+this.style.transform = '';
+handleNo();
+}, { passive: false });
+
+// Also support click events for desktop
+yesBtn.addEventListener('click', handleYes);
+noBtn.addEventListener('click', handleNo);
+
+// ========== FUNCTIONS ==========
+function createHearts(count) {
+for (let i = 0; i < count; i++) {
+const heart = document.createElement('div');
+heart.className = 'heart';
+heart.innerHTML = '❤️';
+heart.style.left = Math.random() * 100 + '%';
+heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+heart.style.animationDelay = Math.random() * 2 + 's';
+
+heartsContainer.appendChild(heart);
+
+setTimeout(() => {
+if (heart.parentNode) {
+heart.remove();
+}
+}, 5000);
+}
+}
+
+function handleNo() {
+// Update No button text
+if (noClickCount < noButtonTexts.length) {
+noBtn.textContent = noButtonTexts[noClickCount];
+
+// Show message
+message.textContent = sadMessages[Math.min(noClickCount, sadMessages.length - 1)];
+message.style.display = 'block';
+
+// Hide message after 2 seconds
+setTimeout(() => {
+message.style.display = 'none';
+}, 2000);
+
+noClickCount++;
+}
+
+// Adjust sizes
+noScale = Math.max(0.4, noScale - 0.06);
+yesScale = Math.min(2, yesScale + 0.15);
+
+noBtn.style.transform = `scale(${noScale})`;
+yesBtn.style.transform = `scale(${yesScale})`;
+
+// Change color gradually
+const redValue = Math.max(150, 255 - (noClickCount * 10));
+noBtn.style.background = `linear-gradient(135deg, rgb(${redValue}, 59, 48), rgb(${redValue}, 107, 107))`;
+
+// Add hearts
+createHearts(2 + noClickCount);
+
+// Final state
+if (noClickCount === noButtonTexts.length) {
+setTimeout(() => {
+noBtn.style.display = 'none';
+yesBtn.style.transform = 'scale(1.8)';
+yesBtn.style.fontSize = '2rem';
+yesBtn.style.width = '80%';
+yesBtn.style.maxWidth = '300px';
+yesBtn.style.margin = '0 auto';
+
+message.textContent = "There's only one choice left... ❤️";
+message.style.display = 'block';
+}, 300);
+}
+}
+
+function handleYes() {
+// Hide everything
+document.querySelector('.buttons-area').style.display = 'none';
+document.querySelector('.message-area').style.display = 'none';
+document.querySelector('.character-area').style.display = 'none';
+document.querySelector('.header').style.display = 'none';
+
+// Show celebration
+celebration.style.display = 'flex';
+
+// Lots of hearts
+createHearts(50);
+
+// More hearts every 300ms
+const heartInterval = setInterval(() => {
+createHearts(10);
+}, 300);
+
+// Stop after 5 seconds
+setTimeout(() => {
+clearInterval(heartInterval);
+}, 5000);
+
+// Add final message
+setTimeout(() => {
+const extraMsg = document.createElement('p');
+extraMsg.innerHTML = '⭐ You just made me the happiest person!';
+extraMsg.style.marginTop = '20px';
+extraMsg.style.fontSize = '1.2rem';
+extraMsg.style.color = '#fff';
+celebration.appendChild(extraMsg);
+
+createHearts(30);
+}, 3000);
+}
+
+// ========== INITIALIZATION ==========
+window.addEventListener('load', function() {
+// Initial hearts
+createHearts(5);
+
+// Ensure buttons are interactive
+const buttons = document.querySelectorAll('.ios-button');
+buttons.forEach(btn => {
+btn.style.cursor = 'pointer';
+btn.style.pointerEvents = 'auto';
+});
+
+// iOS specific: prevent zoom on double-tap
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(event) {
+const now = Date.now();
+if (now - lastTouchEnd <= 300) {
+event.preventDefault();
+}
+lastTouchEnd = now;
+}, false);
+});
+
+// ========== FALLBACK: If still not working ==========
+// Add these as a last resort
+document.addEventListener('DOMContentLoaded', function() {
+// Force iOS to recognize buttons
+const style = document.createElement('style');
+style.textContent = `
+.ios-button {
+cursor: pointer !important;
+-webkit-tap-highlight-color: transparent !important;
+touch-action: manipulation !important;
+}
+.ios-button:active {
+opacity: 0.7 !important;
+}
+`;
+document.head.appendChild(style);
+
+// Another fallback: pointer event polyfill
+if (!('ontouchstart' in window)) {
+document.body.classList.add('no-touch');
+}
+});
+</script>
+</body>
+</html>
